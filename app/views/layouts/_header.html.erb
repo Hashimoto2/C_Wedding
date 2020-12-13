@@ -9,7 +9,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if customer_signed_in? %>
-          <li><%#= link_to 'マイページ',  admins_products_path, class: "btn btn-default navbar-btn" %></li>
+          <li><%= link_to 'マイページ', customers_customer_path(current_customer), class: "btn btn-default navbar-btn" %></li>
           <li><%= link_to 'Ｗedding Ａrticle',customers_articles_path, class: "btn btn-default navbar-btn" %></li>
           <li><%#= link_to 'コメント一覧', admins_orders_path, class: "btn btn-default navbar-btn" %></li>
           <li><%= link_to ' ログアウト', destroy_customers_session_path, method: :delete, class: "btn btn-default navbar-btn" %></li>

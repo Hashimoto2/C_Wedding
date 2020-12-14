@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   devise_for :customers
 
-  get 'homes/top'
   devise_for :admins, skip: :all
   devise_scope :admin do
     get 'admins/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
@@ -22,11 +21,15 @@ Rails.application.routes.draw do
 
   namespace :customers do
     resources :articles, only: [:index, :show, :new, :create, :edit, :update]
-    resources :customers, only: [:show, :new, :create, :edit, :update, :destroy]
+    resources :customers, only: [:show, :create, :edit, :update, :destroy]
+    resources :comments, only: [:index, :create, :update, :destroy]
   end
   root 'customers/articles#top'
   get 'about' => 'customers/articles#about', as: 'about'
   get 'article/thanx' => 'customers/articles#thanx', as: 'thanx'
+  get 'customer/mypage' => 'customers/customers#mypage', as: 'mypage'
+  patch 'customar/out' => 'customers/customers#out', as: 'out'
+  get 'customar/quit' => 'customers/customers#quit', as: 'quit'
   get 'admins' => 'admins/homes#top', as: 'top'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

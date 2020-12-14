@@ -1,0 +1,10 @@
+<body>
+  <div class="row1"><br><br><br><br><br>
+   <h3><strong>本当に退会しますか？</strong></h3><br>
+    <p>退会されると、会員登録情報や</p>
+    <p>これまでの投稿、お気に入り履歴が閲覧できなくなります。</p>
+    <p>退会する場合は、「退会する」をクリックお願いいたします。</p>
+    <%= link_to "退会しない", customers_customer_path(current_customer), class: 'btn btn-primary' %>
+    <%= link_to "退会する", customers_customer_path(current_customer), method: :delete, "data-confirm" => "本当に退会しますか？", class: 'btn btn-danger' %>
+  </div>
+</body>

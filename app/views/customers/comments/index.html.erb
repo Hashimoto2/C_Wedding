@@ -10,7 +10,7 @@
         <table class="table"><br><br><br>
           <thead>
             <tr>
-              <th>お気に入りの記事</th>
+              <th>コメント投稿一覧</th>
             </tr>
           </thead>
           <tbody>
@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-xs-4">
         <div><%= link_to "お気に入り記事", customers_customer_path(current_customer)%></div>
-        <div><%= link_to "My投稿記事", mypage_path %></div>
-        <div><%= link_to "コメント投稿一覧", articles_customers_customer_path(@customer) %></div>
+        <div><%= link_to "My投稿記事", mypage_path(current_customer) %></div>
+        <div><%= link_to "コメント投稿一覧", customers_article_comments_path(@article) %></div>
       </div>
     </div>

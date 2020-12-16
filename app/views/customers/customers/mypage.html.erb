@@ -1,0 +1,43 @@
+<div class="row">
+<div class="col-xs-offset-1 col-xs-11"><br><br><br><br><br>
+<h4><span style="background-color: #afeeee">マイページ</span></h4>
+<br>
+<%= render 'customers/customers/profile', customer: @customer %>
+</div>
+</div>
+<div class="col-xs-8">
+  <section>
+        <table class="table"><br><br><br>
+          <thead>
+            <tr>
+              <th>My投稿記事</th>
+              <td>自身の成功失敗談やこれから結婚式を挙げる新郎新婦の為にお役立ち情報を記事に書いて、投稿しよう‼</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @article.each do |article| %>
+      		    <td>
+      		      <%= link_to customers_article_path(article.id) do %>
+                  <%= attachment_image_tag article, :image, size: "250x200" %><br>
+                <% end %>
+                <div class="name11"><%= article.title %></div>
+                <div class="name11"><%= article.introduction %></div>
+                <%= link_to "削除する", customers_customer_path(current_customer), method: :delete, class: 'btn btn-danger' %>
+              </td>
+            <% end %>
+          <tbody>
+        </table>
+        <%= link_to "記事を作成する", new_customers_article_path %>
+      </section>
+</div>
+  <h3></h3>
+  <p></p>
+
+</div>
+<div class="row">
+  <div class="col-xs-4">
+    <div><%= link_to "お気に入り記事", customers_customer_path(current_customer)%></div>
+    <div><%= link_to "My投稿記事", mypage_path %></div>
+    <div><%= link_to "コメント投稿一覧", articles_customers_customer_path(@customer) %></div>
+  </div>
+</div>

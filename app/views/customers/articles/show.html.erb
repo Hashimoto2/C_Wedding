@@ -18,6 +18,17 @@
         <tbody>
       </table>
     </section>
+     <table class="comments_<%= @article.id %>">
+                <%= render 'customers/comments/comment', article: @article %>
+            </table>
+						<%= form_with(model:[@article, @comment],url: customers_article_comments_path(@article.id), method: :post,local:true ) do |f| %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントを入力する" %>
+                </div>
+              </div>
+              <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+            <% end %>
   </div>
   <div class="col-xs-3"><br><br><br><br><br><br>
     <table class="table table-bordered genre-table">

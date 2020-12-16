@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-8"><br><br><br><br><br><br>
+    <section>
+      <table class="table">
+        <thead></thead>
+        <tbody>
+    		    <td>
+    		      <div class="name11"><%= @article.title %></div>
+    		      <div class="image11"><%= attachment_image_tag @article, :image, size:'200x170' %></div>
+    		      <div class="name11"><%= @article.introduction %></div>
+            </td>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%= link_to "編集する", edit_admins_article_path(@article.id) %></td>
+            </tr>
+        <tbody>
+      </table>
+    </section>
+  </div>

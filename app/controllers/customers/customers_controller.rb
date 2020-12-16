@@ -1,11 +1,12 @@
 class Customers::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
-    @article = Article.all
+    @articles = Article.all
+    #@article = Article.find(params[:id])
   end
 
   def mypage
-    #@customer = Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
     @article = Article.all
   end
 
@@ -36,6 +37,11 @@ class Customers::CustomersController < ApplicationController
   end
 
   def out
+  end
+
+  def articles
+    @customer = Customer.find(params[:id])
+    @articles = Article.joins(:comments).where('comments.customer_id = ?', params[:id])
   end
 
   private

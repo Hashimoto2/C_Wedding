@@ -8,11 +8,9 @@ class Admins::CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-       flash[:notice] = "カテゴリーを追加しました"
-       redirect_to admins_categories_path(current_customer)
+    redirect_to admins_categories_path
     else
-      @categories = Category.all
-      render 'index'
+    render "index"
     end
   end
 
@@ -24,9 +22,12 @@ class Admins::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     if@category.update(category_params)
     redirect_to admins_categories_path
+    else
+    render "edit"
     end
   end
 
+    private
   def category_params
     params.require(:category).permit(:name, :is_active)
   end

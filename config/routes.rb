@@ -1,18 +1,29 @@
 Rails.application.routes.draw do
 
-  devise_for :customers, skip: :all
+  #devise_for :customers, skip: :all
+  devise_for :customers,
+    skip: :all,
+    :controllers => {
+      :sessions => 'customers/sessions',
+      :registrations => 'customers/registrations',
+      :passwords => 'customers/passwords'
+    }
   devise_scope :customer do
-    get 'customers/sign_in' => 'customers/sessions#new', as: 'new_customers_session'
-    post 'customers/sign_in' => 'customers/sessions#create', as: 'customers_session'
-    delete 'customers/sign_out' => 'customers/sessions#destroy', as: 'destroy_customers_session'
-    get 'customers/sign_up' => 'customers/registrations#new', as: 'new_customers_registration'
-    post 'customers' => 'customers/registrations#create', as: 'customers_registration'
-    get 'customers/password/new' => 'customers/passwords#new', as: 'new_customers_password'
+    get 'customers/sign_in' => 'customers/sessions#new', as: 'new_customer_session'
+    post 'customers/sign_in' => 'customers/sessions#create', as: 'customer_session'
+    delete 'customers/sign_out' => 'customers/sessions#destroy', as: 'destroy_customer_session'
+    get 'customers/sign_up' => 'customers/registrations#new', as: 'new_customer_registration'
+    post 'customers' => 'customers/registrations#create', as: 'customer_registration'
+    get 'customers/password/new' => 'customers/passwords#new', as: 'new_customer_password'
   end
 
-  devise_for :customers
+  #devise_for :customers
 
-  devise_for :admins, skip: :all
+  devise_for :admins,
+    skip: :all,
+    :controllers => {
+      :sessions => 'admin/sessions'
+    }
   devise_scope :admin do
     get 'admins/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
     post 'admins/sign_in' => 'admins/sessions#create', as: 'admin_session'

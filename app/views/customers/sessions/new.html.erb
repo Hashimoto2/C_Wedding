@@ -2,7 +2,7 @@
 <div class="col-xs-offset-4 col-xs-11"><br><br><br><br><br>
 <h4><span style="background-color: #afeeee">会員の方はこちらからログイン</span></h4>
 <br>
-<%= form_for(resource, as: resource_name, url: customer_session_path) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :メールアドレス %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

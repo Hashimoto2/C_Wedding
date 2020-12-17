@@ -34,17 +34,17 @@
     <table class="table table-bordered genre-table">
     <thead>
       <tr>
-        <th>カテゴリー</th>
+        <th>カテゴリー検索</th></th>
       </tr>
     </thead>
     <tbody>
-    <%# @genres.each do |genre| %>
+    <% @categories.each do |category| %>
       <tr>
         <td>
-          <%#= link_to genre.name, products_path(genre_id: genre.id) %>
+          <%= link_to category.name, root_path(category_id: category.id) %>
         </td>
       </tr>
-    <%# end %>
+    <% end %>
     </tbody>
   </table>
   <h5>カレンダー</h5>

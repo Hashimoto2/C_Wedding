@@ -1,6 +1,7 @@
 class Customers::ArticlesController < ApplicationController
 
   def top
+    @categories = Category.all
   end
 
   def about
@@ -15,6 +16,7 @@ class Customers::ArticlesController < ApplicationController
 
   def index
     @article = Article.all
+    @categories = Category.all
   end
 
   def create
@@ -38,6 +40,7 @@ class Customers::ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     @comment = Comment.new
+    @categories = Category.all
   end
 
   def edit

@@ -49,7 +49,7 @@ class Customers::ArticlesController < ApplicationController
 
   def destroy
     @article = Article.all
-    @article.destroy
+    @article.destroy(params[:id])
     redirect_to mypage_path(current_customer)
   end
 

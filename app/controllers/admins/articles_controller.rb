@@ -5,7 +5,7 @@ class Admins::ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.all
+    @article = Article.new
   end
 
   def show
@@ -13,7 +13,7 @@ class Admins::ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.all
+    @article = Article.new(article_params)
     if @article.save
     redirect_to admins_articles_path
     else
@@ -37,12 +37,12 @@ class Admins::ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to admins_article_path(@article.id)
+    redirect_to admins_articles_path
   end
 
     private
   def article_params
-    params.require(:article).permit(:title, :introduction, :image )
+    params.require(:article).permit(:title, :introduction, :image, :category_id )
   end
 
 end

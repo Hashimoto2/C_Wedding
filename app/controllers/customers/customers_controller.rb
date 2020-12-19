@@ -2,7 +2,6 @@ class Customers::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @articles = Article.all
-    #@article = Article.find(params[:id])
   end
 
   def mypage

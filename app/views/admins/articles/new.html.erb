@@ -26,6 +26,12 @@
       <!--  <%#= f.label :本文2  %>-->
       <!--  <%#= f.text_area :introduction, autofocus: true, autocomplete: "introduction" %>-->
       <!--</div>-->
+      <div class="genre1">
+        <%= f.label :カテゴリー   %>
+        <div class="btn-group">
+          <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+        </div>
+      </div>
       <div class="btn1"><br><br>
         <%= f.submit "記事を投稿する", class:"btn btn-primary" %>
       </div>

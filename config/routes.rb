@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   namespace :customers do
-    resources :articles, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :articles do
       resources :comments, only: [:index, :create, :update, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
@@ -44,13 +44,14 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-    resources :articles, only: [:index, :show, :new, :create, :edit, :update]
+    resources :articles
     resources :categories, only: [:index, :create, :edit, :update]
   end
 
   root 'customers/articles#top'
   get 'about' => 'customers/articles#about', as: 'about'
   get 'article/thanx' => 'customers/articles#thanx', as: 'thanx'
+  get 'searches' => 'customers/searches#search', as: 'search'
   get 'customer/:id/mypage' => 'customers/customers#mypage', as: 'mypage'
   patch 'customar/out' => 'customers/customers#out', as: 'out'
   get 'customar/quit' => 'customers/customers#quit', as: 'quit'

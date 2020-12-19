@@ -26,15 +26,6 @@ class Customers::ArticlesController < ApplicationController
     else
        render "new"
     end
-
-    # @comment = Comment.new
-    # @comment.customer_id = current_customer.id
-    # if @comment.save
-    #   redirect_to comment_path(current_customer)
-    # else
-    #   @comments = Comment.all
-    #   render "index"
-    # end
   end
 
   def show
@@ -56,9 +47,15 @@ class Customers::ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = Article.all
+    @article.destroy
+    redirect_to mypage_path(current_customer)
+  end
+
   private
   def article_params
-    params.require(:article).permit(:title, :introduction, :image)
+    params.require(:article).permit(:title, :introduction, :image, :category_id)
   end
 end
 

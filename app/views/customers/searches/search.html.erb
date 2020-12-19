@@ -1,0 +1,27 @@
+<div class="row">
+　　<div class="col-xs-offset-1 col-xs-9"><br><br><br><br><br>
+      <% if @datas.empty? %>
+        <h2>該当する記事は見つかりませんでした。</h2>
+      <% end %>
+      <div class="col-xs-9">
+        <h1>
+          <strong>記事一覧</strong> (全<%=  @datas.count %>件)
+        </h1>
+        <table class="table">
+            <thead></thead>
+            <tbody>
+              <% @datas.each do |data| %>
+                <td>
+                  <div class="image1">
+                    <%= link_to customers_article_path(data.id) do %>
+                      <%= attachment_image_tag data, :image, size: "190x150", class: "img_hover" %><br>
+                    <% end %>
+                  </div>
+        		      <div class="name1"><%=  data.title %></div>
+                <td>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+    </div>
+</div>

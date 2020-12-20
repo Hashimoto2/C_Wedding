@@ -2,6 +2,30 @@ class Customers::ArticlesController < ApplicationController
 
   def top
     @categories = Category.all
+    # note = Note.all
+    # [1,2,3,4,5,6]
+    # params = {
+    #   id: 1,
+
+    # }
+    # params[:id] # => 1
+    # notes = [
+    #   {
+    #     id: 1,
+    #     name: 'name',
+    #     user_id: 2
+    #   },
+    #   {
+    #     id: 2,
+    #     name: 'name2',
+    #     user_id: 3
+    #   }
+    # ]
+    # # notes.pluck(:user_id) # => [2, 3]
+    #@rankings = Note.find([1, 2, 3])
+    #Note.find(1)
+    #@rankings = Note.find(Like.group(:note_id).order('count(note_id) desc').limit(3).pluck(:note_id))
+    @article_rannkings = Article.find(Favorite.group(:article_id).order('count(article_id) desc').limit(3).pluck(:article_id))
   end
 
   def about
@@ -15,6 +39,7 @@ class Customers::ArticlesController < ApplicationController
   end
 
   def index
+    @articles = Article.order('created_at desc').limit(3)
     @article = Article.all
     @categories = Category.all
   end
@@ -49,7 +74,7 @@ class Customers::ArticlesController < ApplicationController
 
   def destroy
     @article = Article.all
-    @article.destroy
+    @article.destroy(params[:id])
     redirect_to mypage_path(current_customer)
   end
 

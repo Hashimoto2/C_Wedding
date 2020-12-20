@@ -5,13 +5,13 @@
 <%= render 'customers/customers/profile', customer: @customer %>
 </div>
 </div>
-<div class="col-xs-8">
+<div class="col-xs-9">
   <section>
         <table class="table"><br><br><br>
           <thead>
             <tr>
               <th>My投稿記事</th>
-              <td>自身の成功失敗談やこれから結婚式を挙げる新郎新婦の為にお役立ち情報を記事に書いて、投稿しよう‼</td>
+              <div>自身の成功失敗談やこれから結婚式を挙げる新郎新婦の為にお役立ち情報を記事に書いて、投稿しよう‼</div>
             </tr>
           </thead>
           <tbody>
@@ -35,7 +35,7 @@
 
 </div>
 <div class="row">
-  <div class="col-xs-4">
+  <div class="col-xs-3">
     <div><%= link_to "お気に入り記事", customers_customer_path(current_customer)%></div>
     <div><%= link_to "コメント投稿一覧", articles_customers_customer_path(@customer) %></div>
   </div>

@@ -1,7 +1,8 @@
 class Customers::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
-    @articles = Article.all
+    article_id_list = Favorite.where(customer_id: @customer.id).select(:article_id)
+    @articles = Article.where(id: article_id_list)
   end
 
   def mypage

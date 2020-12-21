@@ -18,17 +18,114 @@
         <tbody>
       </table>
     </section>
-     <table class="comments_<%= @article.id %>">
-                <%= render 'customers/comments/comment', article: @article %>
-            </table>
-						<%= form_with(model:[@article, @comment],url: customers_article_comments_path(@article.id), method: :post,local:true ) do |f| %>
-              <div class="row">
-                <div class="col-sm-12">
-                  <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントを入力する" %>
-                </div>
-              </div>
-              <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-            <% end %>
+     <!--<table class="comments_<%#= @article.id %>">-->
+     <!--           <%#= render 'customers/comments/comment', article: @article %>-->
+     <!--       </table>-->
+  <% if @comments.present? %>
+    <% @comments.each do |comment| %>
+      <div class="row posts">
+        <div class="col-md-2 posts-user">
+          <!--<%#= link_to comment.customer do %>-->
+          <!--  <%#= image_tag comment.customer.picture.url ,width: '100px' %>-->
+          <!--<%# end %>-->
+          <p class="posts-title"><%= comment.customer.last_name+comment.customer.first_name %></p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class=" posts-content">
+            <h4 class="mb-3">評価：<%= comment.rate %>点</h4>
+
+            <!--星評価-->
+           <div id="star-rate-<%= comment.id %>"></div>
+            <script>
+            $('#star-rate-<%= comment.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: '<%= comment.rate %>'
+            });
+            </script>
+          <!--/星評価-->
+
+            <p><%= comment.comment %></p>
+            <%#= image_tag comment.picture.url, class:'img-fluid' if comment.picture? %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <!--<%#= link_to comment.article do %>-->
+          <!--  <div class="posts-product">-->
+          <!--    <img src="<%#= comment.article.image_url %>" alt="">-->
+          <!--    <p><%#=  comment.article.title %></p>-->
+          <!--  </div>-->
+          <!--<%#end %>-->
+        </div>
+        <div class="col-md-12 edit-button">
+          <% if current_customer == comment.customer %>
+            <%= link_to '口コミを編集', edit_customers_article_comment_path(article_id:@article.id,id:comment.id), method: :get, class:'btn btn-default' %>
+            <%= link_to '口コミを削除', customers_article_comment_path(article_id:@article.id,id:comment.id), method: :delete, class:'btn btn-default' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+						<!--<%#= form_with(model:[@article, @comment],url: customers_article_comments_path(@article.id), method: :post,local:true ) do |f| %>-->
+      <!--        <div class="row">-->
+      <!--          <div class="col-sm-12">-->
+      <!--            <%#= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントを入力する" %>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--        <%#= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>-->
+      <!--      <%# end %>-->
+            <!-- 口コミ入力フォーム -->
+  <%= form_for @comment, url:customers_article_comments_path(@article.id) do |f| %>
+
+    <!--エラーメッセージ-->
+    <%#= render 'layouts/error_messages', model: f.object %>
+
+    <!--商品コードの送信-->
+    <%#= f.hidden_field :product_id, { value: product.id} %>
+
+    <!-- 評価 -->
+    <div class="form-group row" id="star">
+      <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+      <%= f.hidden_field :rate, id: :review_star %>
+    </div>
+
+    <!-- 評価javascript -->
+    <script>
+    $('#star').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'comment[rate]',
+      half: true,
+    });
+    </script>
+
+    <!-- 口コミ -->
+    <div class="form-group row">
+      <%= f.label :comment, '口コミ内容 ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= f.text_area :comment, class: "form-control", rows: "8",
+          placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。
+    まずは投稿してみましょう！投稿してから編集もできますよ！' %>
+      </div>
+    </div>
+
+    <!-- 確認ボタン -->
+    <div class="form-group row justify-content-end">
+      <div class="col-md-9">
+        <%= f.submit '投稿する', class:"btn btn-success" %>
+      </div>
+    </div>
+
+  <% end %>
+<!-- /口コミ入力フォーム -->
+
   </div>
   <div class="col-xs-3"><br><br><br><br><br><br>
     <table class="table table-bordered genre-table">

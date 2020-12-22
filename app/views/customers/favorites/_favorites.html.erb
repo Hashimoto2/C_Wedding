@@ -1,5 +1,5 @@
 <% if article.favorited_by?(current_customer) %>
-  <%= link_to article.favorites.count,customers_article_favorite_path(article), method: :delete, class: "glyphicon glyphicon-heart", remote: false %>
+  <%= link_to article.favorites.count,customers_article_favorite_path(article), method: :delete, class: "glyphicon glyphicon-heart", remote: true %>
 <% else %>
-  <%= link_to article.favorites.count, customers_article_favorite_path(article), method: :post, class: "glyphicon glyphicon-heart-empty", remote: false %>
+  <%= link_to article.favorites.count, customers_article_favorite_path(article), method: :post, class: "glyphicon glyphicon-heart-empty", remote: true %>
 <% end %>

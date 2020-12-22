@@ -56,6 +56,7 @@ class Customers::ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     @comment = Comment.new
+    @comments = Comment.all
     @categories = Category.all
   end
 

@@ -54,7 +54,7 @@ RSpec.describe "Articles", type: :request do
     end
   end
   describe 'showページ' do
-    let(:id) {1}
+    let(:id) {FactoryBot.create(:article).id}
     context "showページが正しく表示される" do
       before do
         get  customers_article_path(id)
@@ -68,7 +68,7 @@ RSpec.describe "Articles", type: :request do
     end
   end
   describe 'editページ' do
-     let(:id) {1}
+     let(:id) {FactoryBot.create(:article).id}
     context "editページが正しく表示される" do
       before do
         get edit_customers_article_path(id)

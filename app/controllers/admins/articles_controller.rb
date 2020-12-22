@@ -10,6 +10,7 @@ class Admins::ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def create

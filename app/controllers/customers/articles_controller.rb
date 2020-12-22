@@ -1,7 +1,7 @@
 class Customers::ArticlesController < ApplicationController
 
   def top
-    @categories = Category.all
+    @categories = Category.where(is_active: true)
     # note = Note.all
     # [1,2,3,4,5,6]
     # params = {
@@ -46,7 +46,7 @@ class Customers::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    if @article.save!
+    if @article.save
        redirect_to thanx_path
     else
        render "new"

@@ -7,10 +7,14 @@ class Customers::CommentsController < ApplicationController
 
   def create
     @article = Article.find(params[:article_id])
-    comment = current_customer.comments.new(comment_params)
-    comment.article_id = @article.id
-    comment.save
+    @comment = current_customer.comments.new(comment_params)
+    @comment.article_id = @article.id
+    @categories = Category.all
+    if @comment.save
     redirect_to customers_article_path(@article)
+    else
+    render "customers/articles/show"
+    end
   end
 
   def update
@@ -20,6 +24,7 @@ class Customers::CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     comment = current_customer.comments.find_by(id: params[:id], article_id: @article.id)
     comment.destroy
+    redirect_to customers_article_path(@article)
   end
 
    private

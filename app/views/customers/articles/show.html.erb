@@ -20,6 +20,7 @@
     </section>
      <table class="comments_<%= @article.id %>">
                 <%= render 'customers/comments/comment', article: @article %>
+            　　　　<%= render "customers/comments/error_messages", comment: @comment %>
             </table>
 						<%= form_with(model:[@article, @comment],url: customers_article_comments_path(@article.id), method: :post,local:true ) do |f| %>
               <div class="row">

@@ -5,7 +5,7 @@ class CreateComments < ActiveRecord::Migration[5.2]
       t.integer :customer_id
       t.text :comment
       t.integer :quantity
-
+      t.float :rate
       t.timestamps
     end
   end

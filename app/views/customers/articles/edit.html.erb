@@ -4,7 +4,7 @@
     <h5><span>My投稿記事</span></h5>
 
     <%= form_with model:@article, url: customers_article_path(@article.id), method: :patch, local:true do |f| %>
-
+      <%= render "admins/articles/error_messages", article: @article %>
       <div class="col-xs-4">
         <%= f.label :Photo1   %>
         <br><br><br><br><br>

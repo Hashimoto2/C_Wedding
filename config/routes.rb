@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   namespace :customers do
     resources :articles do
-      resources :comments, only: [:index, :create, :update, :destroy]
+      resources :comments, only: [:index, :create, :update, :destroy, :new, :edit]
       resource :favorite, only: [:create, :destroy]
     end
     resources :customers, only: [:show, :create, :edit, :update, :destroy] do
@@ -45,6 +45,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :articles
+    resources :comments, only: [:index, :destroy ]
     resources :categories, only: [:index, :create, :edit, :update]
     resources :end_user, only: [:index, :show, :edit, :update]
   end

@@ -21,7 +21,11 @@
                 <% end %>
                 <div class="name11"><%= article.title %></div>
                 <div class="name11"><%= article.introduction %></div>
-                <div class="name11"><%#= article.comments %></div>
+                <% article.comments.each do |comment| %>
+                  <% if comment.customer == current_customer %>
+                    <div class="name11"><%= comment.comment %></div>
+                  <% end %>
+                <% end %>
               </td>
             <% end %>
           <tbody>

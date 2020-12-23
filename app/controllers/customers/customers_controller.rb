@@ -1,4 +1,6 @@
 class Customers::CustomersController < ApplicationController
+  before_action :authenticate_customer!
+
   def show
     @customer = Customer.find(params[:id])
     article_id_list = Favorite.where(customer_id: @customer.id).select(:article_id)
@@ -20,7 +22,7 @@ class Customers::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      redirect_to  customers_customer_path(current_customer.id)
+      redirect_to  customers_customer_path(current_customer.id), notice: "会員情報が更新されました。"
     else
       render "edit"
     end

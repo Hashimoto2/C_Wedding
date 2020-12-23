@@ -3,6 +3,7 @@
 
     <h2>カテゴリー一覧・追加</h2><br><br>
     <%= form_for @category, :url => {:action => :create} do |f| %>
+      <%= render "admins/categories/error_messages", category: @category %>
     <div class="col-xs-offset-1">
           <i class="fas fa-candy-cane"></i>
           <%= f.text_field :name  %>

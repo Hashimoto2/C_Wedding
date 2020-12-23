@@ -1,0 +1,12 @@
+<% if category.errors.any? %>
+  <div class="notifications">
+    <div class="notice"><%= category.errors.count %>errors prohibited this obj from being saved:</div>
+  </div>
+  <div class="alert alert-warning">
+    <ul>
+      <% category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

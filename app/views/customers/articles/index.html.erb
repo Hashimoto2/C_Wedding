@@ -1,22 +1,28 @@
 <div class="row">
   <div class="col-xs-3"><br><br><br><br><br><br>
-  <table class="table table-bordered genre-table">
-    <thead>
-      <tr>
-        <th>カテゴリー検索</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td>
-          <%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-  <h5>カレンダー</h5>
+    <!--カテゴリー-->
+    <table class="table table-bordered genre-table">
+      <thead>
+        <tr>
+          <th>カテゴリー検索</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td>
+              <%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <!--カテゴリー-->
+
+    <!--カレンダー-->
+    <h5>カレンダー</h5>
+    <!--カレンダー-->
+
   </div>
   <div class="col-xs-9">
     <section>
@@ -73,6 +79,7 @@
             </td>
       		  <td><%= article.title %></td>
       		  <td><%= article.introduction %></td>
+      		  <% if customer_signed_in? %>
       		  <td class="favorite-btn">
 				       <div id="favorite-<%= article.id %>">
 				    	<%= render 'customers/favorites/favorites', article: article %>
@@ -83,6 +90,7 @@
               <%= link_to "コメント数: #{article.comments.count} ", customers_article_path(article) %>
             </ul>
 					</td>
+					<% end %>
           </tr>
           <% end %>
             <tr>

@@ -1,4 +1,5 @@
 class Admins::ArticlesController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @article = Article.all
@@ -10,14 +11,15 @@ class Admins::ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def create
     @article = Article.new(article_params)
     if @article.save
-    redirect_to admins_articles_path
+     redirect_to admins_articles_path
     else
-    render "new"
+     render "new"
     end
   end
 
@@ -28,9 +30,9 @@ class Admins::ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if @article.update(article_params)
-    redirect_to admins_articles_path
+     redirect_to admins_articles_path
     else
-    render "edit"
+     render "edit"
     end
   end
 
@@ -40,7 +42,7 @@ class Admins::ArticlesController < ApplicationController
     redirect_to admins_articles_path
   end
 
-    private
+  private
   def article_params
     params.require(:article).permit(:title, :introduction, :image, :category_id )
   end

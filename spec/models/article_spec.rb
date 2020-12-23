@@ -3,8 +3,11 @@ require 'rails_helper'
 RSpec.describe Article, type: :model do
   context "データが正しく保存される" do
       before do
+        Category.create(id:1, name:"ウエディング")
+        customer = Customer.create(id:1, email:"aa@aa.com", last_name:"山田", first_name:"花子", last_name_kana:"ヤマダ", first_name_kana:"ハナコ", password:"11641164")
         @article = Article.new
         @article.id = 1
+        @article.customer_id = customer.id
         @article.category_id = 1
         @article.image_id = "image"
         @article.title = "ウエディング"

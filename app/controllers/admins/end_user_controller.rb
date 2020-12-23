@@ -1,4 +1,5 @@
 class Admins::EndUserController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @customers = Customer.all
@@ -15,9 +16,9 @@ class Admins::EndUserController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-    redirect_to admins_end_user_index_path
+     redirect_to admins_end_user_index_path
     else
-    render "edit"
+     render "edit"
     end
   end
 

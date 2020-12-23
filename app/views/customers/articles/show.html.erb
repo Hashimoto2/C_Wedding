@@ -19,30 +19,11 @@
       </table>
     </section>
 
-     <table class="comments_<%= @article.id %>">
-                <%= render 'customers/comments/comment', article: @article %>
-            　　　　<%= render "customers/comments/error_messages", comment: @comment %>
-            </table>
-						<%= form_with(model:[@article, @comment],url: customers_article_comments_path(@article.id), method: :post,local:true ) do |f| %>
-              <div class="row">
-                <div class="col-sm-12">
-                  <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントを入力する" %>
-                </div>
-              </div>
-              <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-            <% end %>
-
-     <!--<table class="comments_<%#= @article.id %>">-->
-     <!--           <%#= render 'customers/comments/comment', article: @article %>-->
-     <!--       </table>-->
   <% if @comments.present? %>
     <% @comments.each do |comment| %>
       <div class="row posts">
         <div class="col-md-2 posts-user">
-          <!--<%#= link_to comment.customer do %>-->
-          <!--  <%#= image_tag comment.customer.picture.url ,width: '100px' %>-->
-          <!--<%# end %>-->
-          <p class="posts-title"><%= comment.customer.last_name+comment.customer.first_name %></p>
+          <p class="posts-title"><%= comment.customer.last_name+comment.customer.first_name %>さん</p>
         </div>
         <div class="col-md-6 mb-3">
           <div class=" posts-content">
@@ -64,16 +45,7 @@
           <!--/星評価-->
 
             <p><%= comment.comment %></p>
-            <%#= image_tag comment.picture.url, class:'img-fluid' if comment.picture? %>
           </div>
-        </div>
-        <div class="col-md-4">
-          <!--<%#= link_to comment.article do %>-->
-          <!--  <div class="posts-product">-->
-          <!--    <img src="<%#= comment.article.image_url %>" alt="">-->
-          <!--    <p><%#=  comment.article.title %></p>-->
-          <!--  </div>-->
-          <!--<%#end %>-->
         </div>
         <div class="col-md-12 edit-button">
           <% if current_customer == comment.customer %>
@@ -85,22 +57,11 @@
     <% end %>
   <% end %>
 
-						<!--<%#= form_with(model:[@article, @comment],url: customers_article_comments_path(@article.id), method: :post,local:true ) do |f| %>-->
-      <!--        <div class="row">-->
-      <!--          <div class="col-sm-12">-->
-      <!--            <%#= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントを入力する" %>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--        <%#= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>-->
-      <!--      <%# end %>-->
-            <!-- 口コミ入力フォーム -->
+  <!-- 口コミ入力フォーム -->
   <%= form_for @comment, url:customers_article_comments_path(@article.id) do |f| %>
 
     <!--エラーメッセージ-->
-    <%#= render 'layouts/error_messages', model: f.object %>
-
-    <!--商品コードの送信-->
-    <%#= f.hidden_field :product_id, { value: product.id} %>
+    <%= render "customers/comments/error_messages", comment: @comment %>
 
     <!-- 評価 -->
     <div class="form-group row" id="star">

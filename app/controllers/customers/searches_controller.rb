@@ -1,4 +1,6 @@
 class Customers::SearchesController < ApplicationController
+  before_action :authenticate_customer!
+
   def search
     @value = params["search"]["value"]         #データを代入
     @how = params["search"]["how"]             #データを代入
@@ -12,7 +14,7 @@ class Customers::SearchesController < ApplicationController
     Article.where(title: value).or(Article.where(category_id: value))
   end
 
-  def forward(value)                              #forward以降は商品名検索の定義しかしてません。
+  def forward(value)                              #forward以降は商品名検索の定義のみ。
     Article.where("title LIKE ?", "#{value}%")
   end
 
@@ -27,7 +29,7 @@ class Customers::SearchesController < ApplicationController
 
   def search_for(how, value)
     case how                     #引数のhowと一致する処理に進むように定義しています。
-    when 'match'                 #ジャンル検索の場合はmatchで固定してるので、必ず'match'の処理に進みます。
+    when 'match'                 #ジャンル検索の場合はmatchで固定しているので、必ず'match'の処理に進みます。
       match(value)
     when 'forward'
       forward(value)

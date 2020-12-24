@@ -54,7 +54,7 @@ class Customers::ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
     if @article.customer != current_customer
-      redirect_to customers_articles_path
+      #redirect_to customers_articles_path
     end
   end
 
@@ -82,7 +82,7 @@ class Customers::ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :introduction, :image, :category_id )
+    params.require(:article).permit(:title, :introduction, :image, :category_id, :image2, :introduction2 )
   end
 
   def ensure_correct_customer

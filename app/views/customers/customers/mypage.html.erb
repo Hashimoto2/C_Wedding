@@ -16,14 +16,16 @@
           </thead>
           <tbody>
             <% @article.each do |article| %>
-      		    <td>
-      		      <%= link_to customers_article_path(article.id) do %>
-                  <%= attachment_image_tag article, :image, size: "250x200" %><br>
-                <% end %>
-                <div class="name11"><%= article.title %></div>
-                <div class="name11"><%= article.introduction %></div>
-                <%= link_to "削除する", customers_article_path(article.id), method: :delete, class: 'btn btn-danger' %>
-              </td>
+              <% if article.customer == current_customer %>
+        		    <td>
+        		      <%= link_to customers_article_path(article.id) do %>
+                    <%= attachment_image_tag article, :image, size: "250x200" %><br>
+                  <% end %>
+                  <div class="name11"><%= article.title %></div>
+                  <div class="name11"><%= article.introduction %></div>
+                  <%= link_to "削除する", customers_article_path(article.id), method: :delete, class: 'btn btn-danger' %>
+                </td>
+              <% end %>
             <% end %>
           <tbody>
         </table>

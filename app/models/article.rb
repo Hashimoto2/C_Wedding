@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
 
   attachment :image
+  attachment :image2
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   belongs_to :category

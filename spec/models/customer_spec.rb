@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Customer, type: :model do
   context "データが正しく保存される" do
       before do
-        @customer.id = 1
         @customer = Customer.new
         @customer.password = "11641164"
         @customer.profile_image = "image"

@@ -4,16 +4,17 @@
     <h2>カテゴリー一覧・追加</h2><br><br>
     <%= form_for @category, :url => {:action => :create} do |f| %>
       <%= render "admins/categories/error_messages", category: @category %>
-    <div class="col-xs-offset-1">
+        <div class="col-xs-offset-1">
           <i class="fas fa-candy-cane"></i>
           <%= f.text_field :name  %>
-            <%= f.radio_button :is_active, true %>
-            <%= f.label :is_active, "有効", {value: :true, style: "display: inline-block;"} %>
-            <%= f.radio_button :is_active, false %>
-            <%= f.label :is_active, "無効", {value: :false, style: "display: inline-block;"} %>
+          <%= f.radio_button :is_active, true %>
+          <%= f.label :is_active, "有効", {value: :true, style: "display: inline-block;"} %>
+          <%= f.radio_button :is_active, false %>
+          <%= f.label :is_active, "無効", {value: :false, style: "display: inline-block;"} %>
           <%= f.submit "追加", class: "btn btn-info" %>
-      </div>
-    <% end %><br>
+        </div>
+    <% end %>
+    <br>
     <div class="col-xs-8 col-xs-offset-2">
       <table class="table table-hover table-inverse table-bordered">
         <thead>
@@ -27,7 +28,6 @@
           <% @categories.each do |category| %>
             <tr>
               <td class="text-left"><%= category.name%></td>
-
               <% if category.is_active == true %>
                 <td class="genre-td"><i class="fas fa-bullseye red"></i>有効</td>
               <% elsif category.is_active == false %>

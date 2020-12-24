@@ -1,6 +1,6 @@
-<div class="row1">
-  <div class="col-xs-offset-1 col-xs-9"><br><br><br><br>
-    <p class="p1">ようこそ！Corona de Happy Weddingへ</p><br>
+<div class="main-visual">
+  <div class="main-visual-content"><br><br><br><br>
+    <h3><strong>ようこそ！Corona de Happy Weddingへ</strong></h3><br>
     <p class="p1">こちらのＥＣサイトは結婚式に関連する記事を投稿し、閲覧することが出来ます。</p><br>
     <p class="p1">※もちろん、投稿されていない方でもご自由にご覧頂けます。</p><br>
     <p class="p1">現状、コロナ禍での結婚式を挙げる新郎新婦様が多くいらっしゃるかと思います。</p><br>
@@ -28,18 +28,16 @@
     <!--記事検索-->
 
     <!--カテゴリー検索-->
-    <table class="table table-bordered genre-table">
+    <table class="table table-bordered genre-table"><br>
       <thead>
         <tr>
-          <th>カテゴリー検索</th></th>
+          <th>カテゴリー検索</th>
         </tr>
       </thead>
       <tbody>
         <% @categories.each do |category| %>
           <tr>
-            <td>
-              <%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %>
-            </td>
+            <td><%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %></td>
           </tr>
         <% end %>
       </tbody>
@@ -53,25 +51,47 @@
 
   <!--人気の記事一覧-->
   <div class="col-xs-8">
-    <h1>人気のＷeddingＡrticle</h1>
-    <p>コロナ禍での結婚式</p><br>
-    <p>結婚式の知っておいた方が良い常識！</p><br>
-    <p>新たな結婚式の魅力発見！！今のコロナ禍だからこそ、テレワークでの在宅だからこその挑戦したい結婚式の形</p><br>
-    <p>リモート結婚式とは、どういうもの？</p><br>
-    <p>今だからこそ、考えるべき結婚式の3つのこと!!</p><br>
+    <section>
+      <table class="table"><br><br>
+        <thead>
+          <tr>
+            <h1>人気のＷeddingＡrticle</h1>
+          </tr>
+        </thead>
+        <tbody>
+          <% @article_rannkings.each do |article| %>
+            <tr>
+        		  <td><%= article.title %></td>
+            </tr>
+          <% end %>
+        <tbody>
+      </table>
+    </section>
+  </div>
     <%#= link_to "もっと見る>", article_path %>
     <!--人気の記事一覧-->
 
     <!--おすすめ、記事ランキング-->
-    <h4>おすすめ、記事ランキング</h4>
-    <div>
-      <% @article_rannkings.each do |article| %>
-        <%= link_to customers_article_path(article.id) do %>
-          <%= attachment_image_tag article, :image, size: "185x120" %>
-        <% end %>
-        <%= article.title %>
-      <% end %>
-    </div><br>
+    <div class="col-xs-9">
+      <section>
+        <table class="table"><br>
+          <thead>
+            <tr>
+              <h4>おすすめ、記事ランキング</h4><br>
+            </tr>
+          </thead>
+          <tbody>
+            <% @article_rannkings.each do |article| %>
+      		    <td>
+        		    <%= link_to customers_article_path(article.id) do %>
+                  <%= attachment_image_tag article, :image, size: "185x120" %><br>
+                <% end %>
+        		    <div><%= article.title %></div>
+              </td>
+            <% end %>
+          <tbody>
+        </table>
+      </section>
+    </div>
     <!--おすすめ、記事ランキング-->
-  </div>
 </div>

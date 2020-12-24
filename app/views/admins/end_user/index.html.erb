@@ -1,29 +1,28 @@
 <div class="col-xs-9"><br><br><br>
-    <h2>会員一覧</h2>
-    <table class="table table-hover table-inverse">
-      <thead>
-        <tr>
-          <th>会員ID</th>
-          <th>氏名</th>
-          <th>メールアドレス</th>
-          <th>ステータス</th>
-        </tr>
+  <h2>会員一覧</h2>
+  <table class="table table-hover table-inverse">
+    <thead>
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
       <div class="table">
         <tbody>
-        <% @customers.each do |customer| %>
-        <tr>
-          <td><%= customer.id %></td>
-          <td><%= link_to admins_end_user_path(customer) do %><%= customer.last_name %><%= customer.first_name %><% end %></td>
-          <td><%= customer.email %></td>
-          <td>
-            <% if customer.is_deleted %>退会済み
-               <% else %>有効会員
-            <% end %>
-          </td>
-        </tr>
-        <% end %>
+          <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.id %></td>
+            <td><%= link_to admins_end_user_path(customer) do %><%= customer.last_name %><%= customer.first_name %><% end %></td>
+            <td><%= customer.email %></td>
+            <td>
+              <% if customer.is_deleted %>退会済み
+                <% else %>有効会員
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
         <tbody>
-       </div>
-    </table>
-  </div>
-</body>
+      </div>
+  </table>
+</div>

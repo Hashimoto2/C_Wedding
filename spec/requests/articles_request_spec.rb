@@ -54,30 +54,17 @@ RSpec.describe "Articles", type: :request do
     end
   end
   describe 'showページ' do
-    let(:id) {FactoryBot.create(:article).id}
+    let(:customer) { FactoryBot.create(:customer) }
+    let(:article) { FactoryBot.create(:article, customer: customer) }
     context "showページが正しく表示される" do
       before do
-        get  customers_article_path(id)
+        get  customers_article_path(article.id)
       end
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
       it 'タイトルが正しく表示されていること' do
         expect(response.body).to include("カテゴリー")
-      end
-    end
-  end
-  describe 'editページ' do
-     let(:id) {FactoryBot.create(:article).id}
-    context "editページが正しく表示される" do
-      before do
-        get edit_customers_article_path(id)
-      end
-      it 'リクエストは200 OKとなること' do
-        expect(response.status).to eq 200
-      end
-      it 'タイトルが正しく表示されていること' do
-        expect(response.body).to include("変更を保存する")
       end
     end
   end

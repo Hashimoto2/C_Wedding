@@ -42,7 +42,7 @@
   color: #B0B0B0;
   width: 100%; /* 横幅いっぱい */
   height: 800px;
-   background-image: url(w5.jpg);
+   background-image: image-url("w5.jpg");
   background-size: 100% 100%;
 }
 
@@ -104,6 +104,6 @@
   color: #B0B0B0;
   width: 100%; /* 横幅いっぱい */
   height: 730px;
-  background-image: url(w3.jpg);
+  background-image: image-url("w3.jpg");
   background-size: 100% 100%;
 }

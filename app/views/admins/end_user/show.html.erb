@@ -1,32 +1,34 @@
-<div class="container"><br><br><br><br><br>
-  <table>
+<div class="row4">
+  <div class="col-xs-offset-4 col-xs-10"><br><br>
+    <table>
+      <tr>
+        <td><h2><%= @customer.last_name %> <%= @customer.first_name %>さんの会員詳細</h2></td><br><br>
+      <tr>
+    </table>
+    <table>
+      <tr>
+        <th>会員ID</th>
+        <th><%= @customer.id %></th>
+        <% if !@customer.is_deleted %>
+          <th><button type="button" class="btn btn-primary">有効会員</button><th>
+        <% else %>
+          <th><button type="button" class="btn btn-primary">退会済み</button><th>
+        <% end %>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <th><%= @customer.last_name %> <%= @customer.first_name %></th>
+      </tr>
+        <th>フリガナ</th>
+        <th><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></th>
+      </tr>
+        <th>メールアドレス</th>
+        <th><%= @customer.email %></th>
+      </tr>
+    </table>
+    <br>
     <tr>
-      <td><h2><%= @customer.last_name %> <%= @customer.first_name %>さんの会員詳細</h2></td><br><br>
-    <tr>
-  </table>
-  <table>
-    <tr>
-      <th>会員ID</th>
-      <th><%= @customer.id %></th>
-      <% if !@customer.is_deleted %>
-        <th><button type="button" class="btn btn-primary">有効会員</button><th>
-      <% else %>
-        <th><button type="button" class="btn btn-primary">退会済み</button><th>
-      <% end %>
+      <th><%= link_to "編集する", edit_admins_end_user_path, class: 'btn btn-primary' %></th>
     </tr>
-    <tr>
-      <th>氏名</th>
-      <th><%= @customer.last_name %> <%= @customer.first_name %></th>
-    </tr>
-      <th>フリガナ</th>
-      <th><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></th>
-    </tr>
-      <th>メールアドレス</th>
-      <th><%= @customer.email %></th>
-    </tr>
-  </table>
-  <br><br>
-  <tr>
-    <th><%= link_to "編集する", edit_admins_end_user_path, class: 'btn btn-primary' %></th>
-  </tr>
+  </div>
 </div>

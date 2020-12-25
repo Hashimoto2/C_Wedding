@@ -1,35 +1,37 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <nav class='nav navbar-nav navbar-left' >
-      <div data-turbolinks="false">
-      <a class="navbar-logo" href="/">
-        <%#= image_tag('logo.png') %>
-      </a></div>
-    </nav>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <% if customer_signed_in? %>
-          <li><%= link_to 'マイページ', customers_customer_path(current_customer), class: "btn btn-default navbar-btn" %></li>
-          <li><%= link_to 'Wedding Article',customers_articles_path, class: "btn btn-default navbar-btn" %></li>
-          <li><%= link_to 'コメント一覧', articles_customers_customer_path(current_customer), class: "btn btn-default navbar-btn" %></li>
-          <li><%= link_to ' ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-default navbar-btn" %></li>
+<header>
+		<nav id="main-navbar" class="navbar navbar-default navbar-fixed-top">
+			<div class="container navbar-container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">Corona de Happy Wedding</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+  					<% if customer_signed_in? %>
+              <li><%= link_to 'マイページ', customers_customer_path(current_customer)%></li>
+              <li><%= link_to 'Wedding Article',customers_articles_path%></li>
+              <li><%= link_to 'コメント一覧', articles_customers_customer_path(current_customer) %></li>
+              <li><%= link_to ' ログアウト', destroy_customer_session_path, method: :delete %></li>
 
-        <% else %>
-          <% if admin_signed_in? %>
-            <li><%= link_to 'Wedding Articie',  admins_articles_path, class: "btn btn-default navbar-btn" %></li>
-            <li><%= link_to '会員一覧', admins_end_user_index_path, class: "btn btn-default navbar-btn" %></li>
-            <li><%= link_to 'コメント一覧', admins_comments_path, class: "btn btn-default navbar-btn" %></li>
-            <li><%= link_to 'カテゴリー一覧', admins_categories_path, class: "btn btn-default navbar-btn" %></li>
-            <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-default navbar-btn" %></li>
+            <% else %>
+            <% if admin_signed_in? %>
+              <li><%= link_to 'Wedding Articie',  admins_articles_path %></li>
+              <li><%= link_to '会員一覧', admins_end_user_index_path %></li>
+              <li><%= link_to 'コメント一覧', admins_comments_path %></li>
+              <li><%= link_to 'カテゴリー一覧', admins_categories_path %></li>
+              <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete %></li>
 
-          <% else %>
-          <li><%= link_to ' About', about_path(current_customer), class: "btn btn-default navbar-btn" %></li>
-          <li><%= link_to ' Wedding Article', customers_articles_path, class: "btn btn-default navbar-btn" %></li>
-          <li><%= link_to ' 新規登録', new_customer_registration_path, class: "btn btn-default navbar-btn" %></li>
-          <li><%= link_to ' ログイン', new_customer_session_path, class: "btn btn-default navbar-btn" %></li>
-          <% end %>
-        <% end %>
-      </ul>
-    </nav>
-  </div>
-</header>
+            <% else %>
+              <li><%= link_to ' About', about_path(current_customer) %></li>
+              <li><%= link_to ' Wedding Article', customers_articles_path %></li>
+              <li><%= link_to ' 新規登録', new_customer_registration_path %></li>
+              <li><%= link_to ' ログイン', new_customer_session_path %></li>
+            <% end %>
+            <% end %>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>

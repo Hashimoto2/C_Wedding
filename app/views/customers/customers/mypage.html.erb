@@ -1,12 +1,12 @@
 <div class="row">
-<div class="col-xs-offset-1 col-xs-11"><br><br><br><br><br>
-<h4><span style="background-color: #afeeee">マイページ</span></h4>
-<br>
-<%= render 'customers/customers/profile', customer: @customer %>
-</div>
-</div>
-<div class="col-xs-9">
-  <section>
+  <div class="col-xs-offset-1 col-xs-11"><br><br><br><br><br>
+    <h4><span style="background-color: #afeeee">マイページ</span></h4>
+    <br>
+    <%= render 'customers/customers/profile', customer: @customer %>
+  </div>
+  <div class="col-xs-8">
+    <div class="article1">
+      <section>
         <table class="table"><br><br><br>
           <thead>
             <tr>
@@ -16,29 +16,30 @@
           </thead>
           <tbody>
             <% @article.each do |article| %>
-              <% if article.customer == current_customer %>
-        		    <td>
-        		      <%= link_to customers_article_path(article.id) do %>
-                    <%= attachment_image_tag article, :image, size: "250x200" %><br>
-                  <% end %>
-                  <div class="name11"><%= article.title %></div>
-                  <div class="name11"><%= article.introduction %></div>
-                  <%= link_to "削除する", customers_article_path(article.id), method: :delete, class: 'btn btn-danger' %>
-                </td>
-              <% end %>
+              <tr>
+                <% if article.customer == current_customer %>
+          		    <td>
+          		      <%= link_to customers_article_path(article.id) do %>
+                      <%= attachment_image_tag article, :image, size: "200x170" %><br>
+                    <% end %>
+                  </td>
+                  <td><div class="name11"><%= article.title %></div></td>
+                  <td><div class="name11"><%= article.introduction %></div></td>
+                  <td><%= link_to "削除する", customers_article_path(article.id), method: :delete, class: 'btn btn-danger' %></td>
+                <% end %>
+              </tr>
             <% end %>
           <tbody>
         </table>
-        <%= link_to "記事を作成する", new_customers_article_path %>
+        <%= link_to "記事を作成する", new_customers_article_path, class:"btn btn-success" %>
       </section>
-</div>
-  <h3></h3>
-  <p></p>
-
-</div>
-<div class="row">
-  <div class="col-xs-3">
-    <div><%= link_to "お気に入り記事", customers_customer_path(current_customer)%></div>
-    <div><%= link_to "コメント投稿一覧", articles_customers_customer_path(@customer) %></div>
+      <br><br>
+    </div>
+  </div>
+  <div class="col-xs-2">
+    <div class="box B_1">
+      <div><%= link_to "お気に入り記事", customers_customer_path(current_customer)%></div>
+      <div><%= link_to "コメント投稿一覧", articles_customers_customer_path(@customer) %></div>
+    </div>
   </div>
 </div>

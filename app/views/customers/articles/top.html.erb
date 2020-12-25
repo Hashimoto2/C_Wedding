@@ -12,45 +12,44 @@
 
 <!--記事検索-->
 <div class="row">
-  <div class="col-xs-3">
-    <div class="title-search"><br><br>
-      <% if customer_signed_in? %>
-        <h5　class="title1">検索</h5>
-          <%= form_with url: search_path, method: :get, local: true do |f| %>
-            <%= f.text_field 'search[value]', size: "26x4" %><br>
-            <span class="search-button col-xs-12 text-right">
-              <%= f.select 'search[how]', options_for_select({ "部分一致" => "partical", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "match" }) %>
-              <%= f.submit :"検索" %>
-            </span>
-          <% end %>
-      <% end %>
-    </div>
-    <!--記事検索-->
-
-    <!--カテゴリー検索-->
-    <table class="table table-bordered genre-table"><br>
-      <thead>
-        <tr>
-          <th>カテゴリー検索</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @categories.each do |category| %>
-          <tr>
-            <td><%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %></td>
-          </tr>
+  <div class="col-xs-2">
+    <div class="category1">
+      <div class="title-search"><br><br>
+        <% if customer_signed_in? %>
+          <h5　class="title1">検索</h5>
+            <%= form_with url: search_path, method: :get, local: true do |f| %>
+              <%= f.text_field 'search[value]', size: "20x4" %><br>
+              <span class="search-button col-xs-12 text-right">
+                <%= f.select 'search[how]', options_for_select({ "部分一致" => "partical", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "match" }) %>
+                <%= f.submit :"検索" %>
+              </span>
+            <% end %>
         <% end %>
-      </tbody>
-    </table>
+      </div><br>
+      <!--記事検索-->
+
+      <!--カテゴリー検索-->
+      <table class="table table-bordered genre-table"><br>
+        <thead>
+          <tr>
+            <th>カテゴリー検索</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td><%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     <!--カテゴリー検索-->
 
-    <!--カレンダー-->
-    <h5>カレンダー</h5>
-    <!--カレンダー-->
+    </div>
   </div>
 
   <!--人気の記事一覧-->
-  <div class="col-xs-8">
+  <div class="col-xs-5">
     <section>
       <table class="table"><br><br>
         <thead>
@@ -74,20 +73,23 @@
     <!--おすすめ、記事ランキング-->
     <div class="col-xs-9">
       <section>
-        <table class="table"><br>
+        <table class="table">
           <thead>
             <tr>
-              <h4>おすすめ、記事ランキング</h4><br>
+              <h4>おすすめランキング</h4>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="font1">
             <% @article_rannkings.each do |article| %>
-      		    <td>
-        		    <%= link_to customers_article_path(article.id) do %>
-                  <%= attachment_image_tag article, :image, size: "185x120" %><br>
-                <% end %>
-        		    <div><%= article.title %></div>
-              </td>
+              <tr>
+                <td>
+          		    <%= link_to customers_article_path(article.id) do %>
+                    <%= attachment_image_tag article, :image, size: "210x130" %><br>
+                  <% end %>
+                </td>
+        		    <td><%= article.title %></td>
+        		    <td><%= article.introduction %></td>
+              </tr>
             <% end %>
           <tbody>
         </table>

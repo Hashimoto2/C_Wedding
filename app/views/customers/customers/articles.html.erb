@@ -1,40 +1,47 @@
 <div class="row">
-<div class="col-xs-offset-1 col-xs-11"><br><br><br><br><br>
-<h4><span style="background-color: #afeeee">マイページ</span></h4>
-<br>
-<%= render 'customers/customers/profile', customer: @customer %>
-</div>
-</div>
-<div class="col-xs-8">
-  <section>
+  <div class="col-xs-offset-1 col-xs-11"><br><br><br><br><br>
+    <h4><span style="background-color: #afeeee">マイページ</span></h4>
+    <br>
+    <%= render 'customers/customers/profile', customer: @customer %>
+  </div>
+  <div class="col-xs-8">
+    <div class="comment2">
+      <section>
         <table class="table"><br><br><br>
           <thead>
             <tr>
               <th>コメント投稿一覧</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="font">
             <% @articles.each do |article| %>
-      		    <td>
-      		      <%= link_to customers_article_path(article.id) do %>
-                  <%= attachment_image_tag article, :image, size: "200x170" %><br>
-                <% end %>
-                <div class="name11"><%= article.title %></div>
-                <div class="name11"><%= article.introduction %></div>
-                <% article.comments.each do |comment| %>
-                  <% if comment.customer == current_customer %>
-                    <div class="name11"><%= comment.comment %></div>
+              <tr>
+        		    <td>
+        		      <%= link_to customers_article_path(article.id) do %>
+                    <%= attachment_image_tag article, :image, size: "200x170" %><br>
                   <% end %>
-                <% end %>
-              </td>
+                </td>
+                <td><div class="name11"><%= article.title %></div></td>
+                <td><div class="name11"><%= article.introduction %></div>
+                <td>
+                  <% article.comments.each do |comment| %>
+                    <% if comment.customer == current_customer %>
+                      <div class="name11">コメント;  <%= comment.comment %></div>
+                    <% end %>
+                  <% end %>
+                </td>
+              <tr>
             <% end %>
           <tbody>
         </table>
       </section>
-</div>
-    <div class="row">
-      <div class="col-xs-4">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="box B_1">
         <div><%= link_to "お気に入り記事", customers_customer_path(current_customer)%></div>
         <div><%= link_to "My投稿記事", mypage_path(current_customer) %></div>
       </div>
     </div>
+</div>

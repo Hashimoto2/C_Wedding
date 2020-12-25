@@ -1,4 +1,5 @@
 <div class="row">
+<<<<<<< HEAD
   <div class="col-xs-8"><br><br><br><br><br><br>
     <section>
       <table class="table">
@@ -34,89 +35,116 @@
               <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
             <% end %>
 =======
+=======
+  <div class="col-xs-7"><br><br><br><br><br>
+    <div class="show">
+      <section>
+        <table class="table">
+          <thead></thead>
+          <tbody>
+    		    <td>
+    		      <div class="title4"><strong><%= @article.title %></strong></div><br>
+    		      <div class="image11"><%= attachment_image_tag @article, :image, size:'718x490' %></div><br>
+    		      <div class="introduction3"><%= @article.introduction %></div><br>
+    		      <div class="image11"><%= attachment_image_tag @article, :image2, size:'718x490' %></div><br>
+    		      <div class="introduction3"><%= @article.introduction2 %></div><br>
+            </td>
+            <tr>
+              <td><div class="edit1"><%= link_to "編集する", edit_customers_article_path(@article.id), class:"btn btn-primary" %></div></td>
+            </tr>
+          <tbody>
+        </table>
+      </section>
+      <br><br><br>
+  </div>
+>>>>>>> 16a11def4d5440b8df9032011da59671df8248f4
 
-    <% if @comments.present? %>
-      <% @comments.each do |comment| %>
-        <div class="row posts">
-          <div class="col-md-2 posts-user">
-            <p class="posts-title"><%= comment.customer.last_name+comment.customer.first_name %>さん</p>
-          </div>
-          <div class="col-md-6 mb-3">
-            <div class=" posts-content">
-              <h4 class="mb-3">評価：<%= comment.rate %>点</h4>
-
-              <!--星評価-->
-              <div id="star-rate-<%= comment.id %>"></div>
-                <script>
-                $('#star-rate-<%= comment.id %>').raty({
-                  size: 36,
-                  starOff:  '<%= asset_path('star-off.png') %>',
-                  starOn : '<%= asset_path('star-on.png') %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  half: true,
-                  readOnly: true,
-                  score: '<%= comment.rate %>'
-                });
-                </script>
-                <!--/星評価-->
-
-                <p><%= comment.comment %></p>
+      <div class="comment1">
+        <% if @comments.present? %>
+          <% @comments.each do |comment| %>
+            <div class="row">
+              <div class="col-md-3">
+                <p class="title"><%= comment.customer.last_name+comment.customer.first_name %>さん</p>
               </div>
-            </div>
-            <div class="col-md-12 edit-button">
-              <% if current_customer == comment.customer %>
-                <%= link_to '口コミを編集', edit_customers_article_comment_path(article_id:@article.id,id:comment.id), method: :get, class:'btn btn-default' %>
-                <%= link_to '口コミを削除', customers_article_comment_path(article_id:@article.id,id:comment.id), method: :delete, class:'btn btn-default' %>
-              <% end %>
+              <div class="col-md-7 mb-4">
+                <div class="content">
+                  <h4 class="mb-3">評価：<%= comment.rate %>点</h4>
+
+                  <!--星評価-->
+                  <div id="star-rate-<%= comment.id %>"></div>
+                    <script>
+                    $('#star-rate-<%= comment.id %>').raty({
+                      size: 36,
+                      starOff:  '<%= asset_path('star-off.png') %>',
+                      starOn : '<%= asset_path('star-on.png') %>',
+                      starHalf: '<%= asset_path('star-half.png') %>',
+                      half: true,
+                      readOnly: true,
+                      score: '<%= comment.rate %>'
+                    });
+                    </script>
+                    <!--/星評価-->
+
+                    <p><%= comment.comment %></p>
+                  </div>
+                </div>
+                <div class="col-md-12 edit-button">
+                  <% if current_customer == comment.customer %>
+                    <%= link_to '口コミを編集', edit_customers_article_comment_path(article_id:@article.id,id:comment.id), method: :get, class:'btn btn-default' %>
+                    <%= link_to '口コミを削除', customers_article_comment_path(article_id:@article.id,id:comment.id), method: :delete, class:'btn btn-default' %>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+        <% end %>
+
+        <!-- 口コミ入力フォーム -->
+        <%= form_for @comment, url:customers_article_comments_path(@article.id) do |f| %>
+
+          <!--エラーメッセージ-->
+          <%= render "customers/comments/error_messages", comment: @comment %>
+
+          <!-- 評価 -->
+          <div class="form-group row" id="star">
+            <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+            <%= f.hidden_field :rate, id: :review_star %>
+          </div>
+
+          <!-- 評価javascript -->
+          <script>
+          $('#star').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'comment[rate]',
+            half: true,
+          });
+          </script>
+
+          <!-- 口コミ -->
+          <div class="form-group row">
+            <%= f.label :comment, '口コミ内容 ', class:'col-md-3 col-form-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :comment, class: "form-control", rows: "8",
+                placeholder:'口コミを投稿してみましょう！
+            投稿した後でも編集ができます！！' %>
             </div>
           </div>
-      <% end %>
-    <% end %>
 
-    <!-- 口コミ入力フォーム -->
-    <%= form_for @comment, url:customers_article_comments_path(@article.id) do |f| %>
+          <!-- 確認ボタン -->
+          <div class="form-group row justify-content-end">
+            <div class="btn2">
+              <%= f.submit '投稿する', class:"btn btn-success" %>
+            </div><br><br><br>
+          </div>
 
-      <!--エラーメッセージ-->
-      <%= render "customers/comments/error_messages", comment: @comment %>
-
-      <!-- 評価 -->
-      <div class="form-group row" id="star">
-        <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
-        <%= f.hidden_field :rate, id: :review_star %>
+        <% end %>
+        <!-- /口コミ入力フォーム -->
       </div>
+    </div>
 
-      <!-- 評価javascript -->
-      <script>
-      $('#star').raty({
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        scoreName: 'comment[rate]',
-        half: true,
-      });
-      </script>
-
-      <!-- 口コミ -->
-      <div class="form-group row">
-        <%= f.label :comment, '口コミ内容 ', class:'col-md-3 col-form-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :comment, class: "form-control", rows: "8",
-            placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。
-                         まずは投稿してみましょう！投稿してから編集もできますよ！' %>
-        </div>
-      </div>
-
-      <!-- 確認ボタン -->
-      <div class="form-group row justify-content-end">
-        <div class="col-md-9">
-          <%= f.submit '投稿する', class:"btn btn-success" %>
-        </div>
-      </div>
-
-    <% end %>
-    <!-- /口コミ入力フォーム -->
-
+<<<<<<< HEAD
 >>>>>>> 958507d55d706b07ab20bdd867190d76fd4991d5
   </div>
   <div class="col-xs-3"><br><br><br><br><br><br>
@@ -128,14 +156,26 @@
       </thead>
       <tbody>
         <% @categories.each do |category| %>
+=======
+  <div class="col-xs-3"><br><br><br><br><br>
+    <div class="category3">
+      <table class="table table-bordered genre-table">
+        <thead>
+>>>>>>> 16a11def4d5440b8df9032011da59671df8248f4
           <tr>
-            <td>
-              <%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %>
-            </td>
+            <th>カテゴリー検索</th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td>
+                <%= link_to category.name, search_path('search[value]': category.id, 'search[how]': "match") %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <h5>カレンダー</h5>
 </div>

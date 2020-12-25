@@ -1,41 +1,4 @@
 <div class="row">
-<<<<<<< HEAD
-  <div class="col-xs-8"><br><br><br><br><br><br>
-    <section>
-      <table class="table">
-        <thead></thead>
-        <tbody>
-  		    <td>
-  		      <div class="name11"><%= @article.title %></div>
-  		      <div class="image11"><%= attachment_image_tag @article, :image, size:'200x170' %></div>
-  		      <div class="name11"><%= @article.introduction %></div>
-  		      <div class="image11"><%= attachment_image_tag @article, :image2, size:'200x170' %></div>
-  		      <div class="name11"><%= @article.introduction2 %></div>
-          </td>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><%= link_to "編集する", edit_customers_article_path(@article.id) %></td>
-          </tr>
-        <tbody>
-      </table>
-    </section>
-<<<<<<< HEAD
-     <table class="comments_<%= @article.id %>">
-                <%= render 'customers/comments/comment', article: @article %>
-            　　　　<%= render "customers/comments/error_messages", comment: @comment %>
-            </table>
-						<%= form_with(model:[@article, @comment],url: customers_article_comments_path(@article.id), method: :post,local:true ) do |f| %>
-              <div class="row">
-                <div class="col-sm-12">
-                  <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントを入力する" %>
-                </div>
-              </div>
-              <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-            <% end %>
-=======
-=======
   <div class="col-xs-7"><br><br><br><br><br>
     <div class="show">
       <section>
@@ -57,7 +20,6 @@
       </section>
       <br><br><br>
   </div>
->>>>>>> 16a11def4d5440b8df9032011da59671df8248f4
 
       <div class="comment1">
         <% if @comments.present? %>
@@ -144,24 +106,10 @@
       </div>
     </div>
 
-<<<<<<< HEAD
->>>>>>> 958507d55d706b07ab20bdd867190d76fd4991d5
-  </div>
-  <div class="col-xs-3"><br><br><br><br><br><br>
-    <table class="table table-bordered genre-table">
-      <thead>
-        <tr>
-          <th>カテゴリー検索</th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @categories.each do |category| %>
-=======
   <div class="col-xs-3"><br><br><br><br><br>
     <div class="category3">
       <table class="table table-bordered genre-table">
         <thead>
->>>>>>> 16a11def4d5440b8df9032011da59671df8248f4
           <tr>
             <th>カテゴリー検索</th></th>
           </tr>

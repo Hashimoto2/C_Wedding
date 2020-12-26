@@ -35,7 +35,7 @@ class Customers::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.customer_id = current_customer.id
+    @article.customer = current_customer
 
     if @article.save
        redirect_to thanx_path

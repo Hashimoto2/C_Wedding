@@ -54,7 +54,6 @@ class Customers::ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
     if @article.customer != current_customer
-      #redirect_to customers_articles_path
     end
   end
 

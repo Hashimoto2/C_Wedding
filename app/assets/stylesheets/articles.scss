@@ -1,3 +1,109 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@font-face {
+  font-family: 'Nasu';
+  src: font-url('Nasu-Regular-20200227.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.col-xs-5 {
+  margin-left: 40px;
+}
+
+.col-xs-9 {
+  margin-left: 30px;
+}
+
+.category2 {
+  margin-left: 30px;
+}
+
+.font1 {
+  font-size: 15px;
+}
+
+.introduction1 {
+  margin-left: 458px;
+}
+
+.btn1 {
+  margin-left: 550px;
+}
+
+.row2 {
+  font-family: 'Nasu';
+  text-align: center;
+  font-size: 18px;
+  color: #B0B0B0;
+  width: 100%; /* 横幅いっぱい */
+  height: 800px;
+   background-image: image-url("w5.jpg");
+  background-size: 100% 100%;
+}
+
+.title3 {
+  margin-top: 27px;
+}
+
+.show {
+  text-align: center;
+  margin-left: 180px;
+}
+
+.title4 {
+  font-size: 22px;
+}
+
+.introduction3 {
+  font-size: 16px;
+}
+
+.category3 {
+  margin-left: 80px;
+}
+
+.comment1 {
+  margin-left: 110px;
+}
+
+.edit1 {
+  margin-left: 530px;
+}
+
+.btn2 {
+  margin-left: 690px;
+}
+
+.comment2 {
+  margin-left: 60px;
+}
+
+.article1 {
+  margin-left: 60px;
+}
+
+.B_1{
+	border: none;
+}
+.B_1 {
+	box-shadow: 0 0 1rem 0 rgba(0,0,0,0.15);
+	text-align: center;
+	padding: 10px;
+	border-radius: 8px;
+}
+
+.row1 {
+  font-family: 'Nasu';
+  text-align: center;
+  font-size: 19px;
+  color: #B0B0B0;
+  width: 100%; /* 横幅いっぱい */
+  height: 730px;
+  background-image: image-url("w3.jpg");
+  background-size: 100% 100%;
+}

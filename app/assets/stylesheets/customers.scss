@@ -1,3 +1,41 @@
 // Place all the styles related to the customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@font-face {
+  font-family: 'Nasu';
+  src: font-url('Nasu-Regular-20200227.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.row3 {
+  font-family: 'Nasu';
+  color: #A9A9A9;
+  margin-left: 180px;
+}
+
+.row4 {
+  font-family: 'Nasu';
+  color: #A9A9A9;
+  font-size: 20px;
+}
+
+.image2 {
+  background-image: image-url("w6.jpg");
+  border-radius: 10px;
+  width: 150px;
+  height: 120px;
+  background-size: 100% 100%;
+}
+
+.container2 {
+  margin-left: 180px;
+  margin-top: 70px;
+}
+
+.title5 {
+  margin-left: 40px;
+}

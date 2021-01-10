@@ -19,8 +19,8 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
-        echo "$AWS_ACCESS_KEY_ID"
-        echo "$AWS_SECRET_ACCESS_KEY_ID"
+        echo "$AWS_ACCESS_KEY_ID" > .env
+        echo "$AWS_SECRET_ACCESS_KEY_ID" >> .env
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd C_Wedding &&
         git pull origin master &&

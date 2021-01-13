@@ -49,6 +49,8 @@ class Customers::ArticlesController < ApplicationController
     @comment = Comment.new
     @comments = @article.comments
     @categories = Category.where(is_active: true)
+     # 参照先のS3オブジェクトURLを作成
+    @article_url = "https://RESIZE_BUCKET_NAME.s3-us-northeast-1.amazonaws.com/store/" + @article.image + "-thumbnail."
   end
 
   def edit
@@ -60,6 +62,7 @@ class Customers::ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if @article.update(article_params)
+       sleep(3) # S3への画像反映のタイムラグを考慮して3秒待機
       redirect_to customers_articles_path, notice: "記事が更新されました。"
     else
       render "edit"

@@ -49,8 +49,8 @@ class Customers::ArticlesController < ApplicationController
     @comment = Comment.new
     @comments = @article.comments
     @categories = Category.where(is_active: true)
-     # 参照先のS3オブジェクトURLを作成
-    @article_url = "https://c-wedding-s3.s3-us-east-1.amazonaws.com/store/" + @article.image_id + "-thumbnail."
+    # 参照先のS3オブジェクトURLを作成
+    # @article_url = "https://c-wedding-s3.s3-us-east-1.amazonaws.com/store/" + @article.image_id + "-thumbnail."
   end
 
   def edit

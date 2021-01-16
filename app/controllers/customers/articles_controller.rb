@@ -51,6 +51,7 @@ class Customers::ArticlesController < ApplicationController
     @categories = Category.where(is_active: true)
     #参照先のS3オブジェクトURLを作成
     @article_url = "https://#{ENV['AWS_S3_BUCKET_NAME']}-resize.s3.amazonaws.com/store/#{@article.image_id.to_s}-thumbnail."
+    @article_url2 = "https://#{ENV['AWS_S3_BUCKET_NAME']}-resize.s3.amazonaws.com/store/#{@article.image2_id.to_s}-thumbnail."
   end
 
   def edit

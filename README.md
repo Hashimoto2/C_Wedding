@@ -41,5 +41,3 @@ https://docs.google.com/spreadsheets/d/1GndZXQnrBt-LToO6biL9i0QkOrzVEjpzytHAxh0h
 - お名前.com(検討中) https://www.onamae.com/
 - pixabay https://pixabay.com/ja/
 - Google Fonts　https://fonts.google.com/
-
-"https://c-wedding-s3-resize.s3.amazonaws.com/store/8c7f63511086d852f58c1216fce78901fabcbaded798132bfe1249d9fb93-thumbnail."

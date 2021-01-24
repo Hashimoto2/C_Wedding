@@ -13,7 +13,13 @@
     		      <div class="introduction3"><%= @article.introduction2 %></div><br>
             </td>
             <tr>
-              <td><div class="edit1"><%= link_to "編集する", edit_customers_article_path(@article.id), class:"btn btn-primary" %></div></td>
+              <td>
+                <div class="edit1">
+                  <% if current_customer == @article.customer %>
+                    <%= link_to "編集する", edit_customers_article_path(@article.id), class:"btn btn-primary" %>
+                  <% end %>
+                </div>
+              </td>
             </tr>
           <tbody>
         </table>

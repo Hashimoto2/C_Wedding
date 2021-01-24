@@ -55,8 +55,8 @@ Rails.application.routes.draw do
   get 'article/thanx' => 'customers/articles#thanx', as: 'thanx'
   get 'searches' => 'customers/searches#search', as: 'search'
   get 'customer/:id/mypage' => 'customers/customers#mypage', as: 'mypage'
-  patch 'customar/out' => 'customers/customers#out', as: 'out'
-  get 'customar/quit' => 'customers/customers#quit', as: 'quit'
+  patch 'customer/out' => 'customers/customers#out', as: 'out'
+  get 'customer/quit' => 'customers/customers#quit', as: 'quit'
   get 'admins' => 'admins/homes#top', as: 'top'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

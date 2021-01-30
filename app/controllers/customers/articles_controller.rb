@@ -1,4 +1,5 @@
 class Customers::ArticlesController < ApplicationController
+  before_action :authenticate_customer!, only:[:new]
 
   def top
     @categories = Category.where(is_active: true)

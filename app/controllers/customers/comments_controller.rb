@@ -12,10 +12,13 @@ class Customers::CommentsController < ApplicationController
     @comment.article_id = @article.id
     @categories = Category.all
     @comment.article_id = @article.id
+    @comments = @article.comments
 
     if @comment.save
      redirect_to customers_article_path(@article)
     else
+     @article_url = "https://#{ENV['AWS_S3_BUCKET_NAME']}-resize.s3.amazonaws.com/store/#{@article.image_id.to_s}-thumbnail."
+     @article_url2 = "https://#{ENV['AWS_S3_BUCKET_NAME']}-resize.s3.amazonaws.com/store/#{@article.image2_id.to_s}-thumbnail."
      render "customers/articles/show"
     end
   end
